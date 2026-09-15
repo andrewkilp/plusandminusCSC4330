@@ -104,18 +104,40 @@ class _MyHomePageState extends State<MyHomePage> {
           // wireframe for each widget.
           mainAxisAlignment: .center,
           children: [
-            const Text('You have pushed the button this many times:'),
+            Text('Andrew has have pushed the button this many times:',
+              style: Theme.of(context).textTheme.headlineLarge,
+            ),
             Text(
               '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
+              style: Theme.of(context).textTheme.headlineLarge,
             ),
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
+      floatingActionButton: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          FloatingActionButton(
+            heroTag: 'increment',
+            onPressed: _incrementCounter,
+            tooltip: 'Increment',
+            child: const Icon(Icons.add),
+          ),
+          const SizedBox(width: 12),
+          FloatingActionButton(
+            heroTag: 'decrement',
+            onPressed: () => setState(() => _counter--),
+            tooltip: 'Decrement',
+            child: const Icon(Icons.remove),
+          ),
+          const SizedBox(width: 12),
+          FloatingActionButton(
+            heroTag: 'reset',
+            onPressed: () => setState(() => _counter = 0),
+            tooltip: 'Reset to zero',
+            child: const Text('0'),
+          ),
+        ],
       ),
     );
   }
